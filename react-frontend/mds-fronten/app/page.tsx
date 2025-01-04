@@ -1,5 +1,6 @@
 import ShoppingCart from './components/ShoppingCart';
-
+import Apps from './Apps';
+import './globals.css';
 export default function Home() {
   return (
     // <div className={styles.page}>
@@ -91,7 +92,8 @@ export default function Home() {
     //   </footer>
     // </div>
     <main>
-        <ShoppingCart />
+        {/* <ShoppingCart /> */}
+        <Apps />
     </main>
   );
 }
