@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
-import { retrieveTodoApi, updateTodoApi, createTodoApi } from './api/TodoApiService'
+import { createProduct } from './api/TodoApiService'
 import { useAuth } from './security/AuthContext'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import moment from 'moment'
@@ -10,25 +10,23 @@ export default function TodoComponent() {
     
     const {id} = useParams()
     
-    const[description, setDescription] = useState('')
-    const[targetDate, setTargetDate] = useState('')
+    const[name, setName] = useState('')
+    const[price, setPrice] = useState(0)
 
-    const authContext = useAuth()
     const navigate = useNavigate()
     
-    const username = authContext.username
     
     useEffect(
-        () => retrieveTodos(),
+        () => retrieveProducts(),
         [id]
         )
 
-    function retrieveTodos(){
+    function retrieveProducts(){
         if(id != -1) {
-            retrieveTodoApi(username, id)
+            retrieveProductById(id)
             .then(response => {
-                setDescription(response.data.description)
-                setTargetDate(response.data.targetDate)
+                setName(response.data.name)
+                setPrice(response.data.price)
             })
             .catch(error => console.log(error))
         }
@@ -37,30 +35,27 @@ export default function TodoComponent() {
     function onSubmit(values) {
         console.log(values)
         
-        const todo = {
-            id: id,
-            username: username,
-            description: values.description,
-            targetDate: values.targetDate,
-            done: false
+        const product = {
+            // id: id,
+            name: values.name,
+            price: values.price,
         }
 
-        console.log(todo)
+        console.log(product)
 
         if(id==-1) {
-            createTodoApi(username, todo)
+            createProduct(product)
             .then(response => {
-                navigate('/todos')
-            })
-            .catch(error => console.log(error))
-    
-        } else {
-            updateTodoApi(username, id, todo)
-            .then(response => {
-                navigate('/todos')
+                navigate('/products')
             })
             .catch(error => console.log(error))
         }
+        // } else {
+        //     updateTodoApi(username, id, todo)
+        //     .then(response => {
+        //         navigate('/todos')
+        //     })
+        //     .catch(error => console.log(error)) }
     }
 
     function validate(values) {
@@ -69,12 +64,12 @@ export default function TodoComponent() {
             // targetDate: 'Enter a valid target date'
         }
 
-        if(values.description.length<5) {
-            errors.description = 'Enter atleast 5 characters'
+        if(values.name.length<2) {
+            errors.name = 'Enter atleast 2 characters'
         }
 
-        if(values.targetDate == null || values.targetDate=='' || !moment(values.targetDate).isValid()) {
-            errors.targetDate = 'Enter a target date'
+        if(values.price == null || values.price=='' || !moment(values.price).isValid()) {
+            errors.targetDate = 'Enter a price'
         }
 
         console.log(values)
@@ -85,7 +80,7 @@ export default function TodoComponent() {
         <div className="container">
             <h1>Enter Todo Details </h1>
             <div>
-                <Formik initialValues={ { description, targetDate } } 
+                <Formik initialValues={ {name:name, price:price}  }
                     enableReinitialize = {true}
                     onSubmit = {onSubmit}
                     validate = {validate}
@@ -96,24 +91,24 @@ export default function TodoComponent() {
                     (props) => (
                         <Form>
                             <ErrorMessage 
-                                name="description"
+                                name=" name"
                                 component="div"
                                 className = "alert alert-warning"
                             />
                             
                             <ErrorMessage 
-                                name="targetDate"
+                                name="price"
                                 component="div"
                                 className = "alert alert-warning"
                             />
 
                             <fieldset className="form-group">
-                                <label>Description</label>
-                                <Field type="text" className="form-control" name="description" />
+                                <label>Product Name</label>
+                                <Field type="text" className="form-control" name="name" />
                             </fieldset>
                             <fieldset className="form-group">
-                                <label>Target Date</label>
-                                <Field type="date" className="form-control" name="targetDate"/>
+                                <label>Product Price</label>
+                                <Field type="number" className="form-control" name="price"/>
                             </fieldset>
                             <div>
                                 <button className="btn btn-success m-5" type="submit">Save</button>
