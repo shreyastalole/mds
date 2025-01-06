@@ -1,5 +1,5 @@
-import ShoppingCart from './components/ShoppingCart';
-import Apps from './Apps';
+"use client";
+import WelcomeComponent from './components/WelcomeComponent';
 import './globals.css';
 export default function Home() {
   return (
@@ -93,7 +93,8 @@ export default function Home() {
     // </div>
     <main>
         {/* <ShoppingCart /> */}
-        <Apps />
+        {/* <Apps /> */}
+        { <WelcomeComponent />}
     </main>
   );
 }

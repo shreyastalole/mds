@@ -1,8 +1,7 @@
 "use client";
-import { useParams,Link } from 'react-router-dom'
+import Link from 'next/link';
 import { useState } from 'react'
-import { retrieveHelloWorldPathVariable } from './api/HelloWorldApiService'
-import { useAuth } from './security/AuthContext'
+
 
 
 function WelcomeComponent() {
@@ -38,7 +37,7 @@ function WelcomeComponent() {
         <div className="WelcomeComponent">
             <h1>Welcome To Our App</h1>
             <div>
-                Manage your Shopping List - <Link to="/products">Go here</Link>
+                Manage your Shopping List - <Link href="/products">Go here</Link>
             </div>
             {/* <div>
                 <button className="btn btn-success m-5" onClick={callHelloWorldRestApi}>

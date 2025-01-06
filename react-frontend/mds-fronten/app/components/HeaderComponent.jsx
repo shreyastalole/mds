@@ -1,5 +1,5 @@
 "use client";
-import { Link } from 'react-router-dom'
+import Link from 'next/link';
 // import { useAuth } from './security/AuthContext'
 
 
@@ -20,9 +20,9 @@ export default function HeaderComponent(){
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav">
                             <li className="nav-item fs-5">
-                                <Link className="nav-link" to="/welcome">Home</Link></li>
+                                <Link className="nav-link" href="/welcome">Home</Link></li>
                             <li className="nav-item fs-5">
-                                <Link className="nav-link" to="/products">List</Link></li>
+                                <Link className="nav-link" href="/products">List</Link></li>
                         </ul>
                     </div>
                     {/* <ul className="navbar-nav">
