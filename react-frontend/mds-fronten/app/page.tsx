@@ -1,6 +1,9 @@
 "use client";
 import WelcomeComponent from './components/WelcomeComponent';
 import './globals.css';
+export const dynamic = 'force-dynamic';
+
+
 export default function Home() {
   return (
     // <div className={styles.page}>
@@ -94,7 +97,7 @@ export default function Home() {
     <main>
         {/* <ShoppingCart /> */}
         {/* <Apps /> */}
-        { <WelcomeComponent />}
+        <WelcomeComponent />
     </main>
   );
 }

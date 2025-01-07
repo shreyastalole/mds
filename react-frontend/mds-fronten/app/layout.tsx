@@ -1,8 +1,10 @@
+import Head from 'next/head';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 import HeaderComponent from "./components/HeaderComponent";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +28,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <Head>
+        {/* Add the meta tag for Content-Security-Policy */}
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+      </Head>
       <body className={`${geistSans.variable} ${geistMono.variable} App`}>
         <HeaderComponent/>
         {children}

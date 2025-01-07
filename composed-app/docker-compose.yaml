@@ -83,45 +83,50 @@ services:
       - app-network
     ports:
       - "3000:3000"
+    build:
+      context: ../react-frontend/mds-fronten
+      args:
+        # NEXT_PUBLIC_API_URL: ${API_URL:-http://backendquarkus:8080}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://backendquarkus:8080}
     environment:
-      NEXT_PUBLIC_API_URL: http://backendquarkus:8080/
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://backendquarkus:8080}
     depends_on:
-      - backendquarkus  
+      - backendquarkus
 
   backendquarkus:
     container_name: backendquarkus
-    image: shreyastalole/quarkus-backend:latest
+    image: kaifmohd75/quarkus-backend:latest
     networks:
       - app-network
     ports:
       - "8080:8080"
-    environment:
-      - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/product_db
-      - QUARKUS_DATASOURCE_USERNAME=admin
-      - QUARKUS_DATASOURCE_PASSWORD=admin
-    depends_on:
-      - database
+    # environment:
+    #   - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/product_db
+    #   - QUARKUS_DATASOURCE_USERNAME=admin
+    #   - QUARKUS_DATASOURCE_PASSWORD=admin
+    # depends_on:
+    #   - database
   
-  database:
-    image: postgres:15
-    container_name: database
-    environment:
-      - POSTGRES_DB=product_db
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - app-network
+  # database:
+  #   image: postgres:15
+  #   container_name: database
+  #   environment:
+  #     - POSTGRES_DB=product_db
+  #     - POSTGRES_USER=admin
+  #     - POSTGRES_PASSWORD=admin
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - app-network
 
 networks:
   app-network:
     name: app-network
 
-volumes:
-  postgres_data:
+# volumes:
+#   postgres_data:
 
 
 
