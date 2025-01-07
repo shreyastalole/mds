@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
+import { PublicEnvScript } from 'next-runtime-env';
 import HeaderComponent from "./components/HeaderComponent";
 
 
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <Head>
+       <PublicEnvScript />
         {/* Add the meta tag for Content-Security-Policy */}
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>

@@ -83,13 +83,14 @@ services:
       - app-network
     ports:
       - "3000:3000"
-    build:
-      context: ../react-frontend/mds-fronten
-      args:
-        # NEXT_PUBLIC_API_URL: ${API_URL:-http://backendquarkus:8080}
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://backendquarkus:8080}
+    # build:
+    #   context: ../react-frontend/mds-fronten
+    #   args:
+    #     # NEXT_PUBLIC_API_URL: ${API_URL:-http://backendquarkus:8080}
+    #     NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://backendquarkus:8080}
     environment:
-      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://backendquarkus:8080}
+      # - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://backendquarkus:8080}
+      - NEXT_PUBLIC_API_URL=http://backendquarkus:8080
     depends_on:
       - backendquarkus
 
