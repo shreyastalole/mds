@@ -1,6 +1,6 @@
 # To Run
-Set the **environment variable for backend url** to do this **EXPORT NEXT_PUBLIC_API_URL=your_url** in linux and in windows you can use **set** command.
-Navigate to **composed-docker** folder and run the **docker compose** file using **docker-compose up --build** command
+Set the **environment variable for backend url** to do this **export NEXT_PUBLIC_API_URL=your_url** in linux and in windows you can use **set** command.
+Navigate to **composed-app** folder and run the **docker compose** file using **docker-compose up --build** command
 
 # 12-Factor App Compliance for Quarkus and Next.js Project
 
@@ -27,7 +27,7 @@ Example: The backend URL is passed to the frontend as an environment variable, e
 
 ## IV. Backing Services
 
-The project treats the **H2 database** as an attached resource. The database runs within the backend container and is managed as part of the service definition in the `docker-compose.yml` file.
+The project treats the **PostgresSQL database** as an attached resource. The database runs within the backend container and is managed as part of the service definition in the `docker-compose.yml` file.
 
 ## V. Build, Release, Run
 
@@ -38,14 +38,14 @@ The application ensures a strict separation of build and run stages:
 
 ## VI. Processes
 
-The Quarkus backend is designed to be **stateless**. The H2 in-memory database is used for data storage during the initial exploration phase, emphasizing the stateless nature of the application logic.
-
+The Quarkus backend is designed to be **stateless**. The POSTGRESQL DB is used for data storage and NEXTJS-REACT for Frontend.
 ## VII. Port Binding
 
 Services are exposed via **port binding** using the `docker-compose.yml` file:
 
 - **Frontend:** Port `3000`
 - **Backend:** Port `8080`
+- **Database** Port `5432`
 
 The ports are dynamically mapped to ensure accessibility from the host machine.
 
@@ -108,7 +108,7 @@ The API specifications are implemented based on the provided OpenAPI document. T
 
 - **Frontend:** Next.js, React
 - **Backend:** Quarkus, Java
-- **Database:** H2
+- **Database:** PostgreSQL
 - **Containerization:** Docker, Docker Compose
 
 ---
@@ -117,8 +117,7 @@ The API specifications are implemented based on the provided OpenAPI document. T
 
 This project successfully implements the **12-Factor App** methodology. The application ensures externalized configuration, containerization, and a stateless design, making it scalable and production-ready. Further improvements can include:
 
-- Migrating to a persistent database.
 - Centralizing log management.
 - Adding CI/CD pipelines for automated builds and deployments.
-- Adding Kubernetes in future.
+- Adding Kubernetes for orchestration of the services.
 
