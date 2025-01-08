@@ -116,4 +116,5 @@ This project successfully implements the **12-Factor App** methodology. The appl
 - Migrating to a persistent database.
 - Centralizing log management.
 - Adding CI/CD pipelines for automated builds and deployments.
+- Adding Kubernetes in future.
 
