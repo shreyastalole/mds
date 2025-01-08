@@ -1,3 +1,7 @@
+# To Run
+Set the **environment variable for backend url** to do this **EXPORT NEXT_PUBLIC_API_URL=your_url** in linux and in windows you can use **set** command.
+Navigate to **composed-docker** folder and run the **docker compose** file using **docker-compose up --build** command
+
 # 12-Factor App Compliance for Quarkus and Next.js Project
 
 This project is designed following the **12-Factor App** methodology to ensure modern software development best practices. The application consists of a **Next.js React frontend** and a **Quarkus backend**, both containerized using Docker and managed through Docker Compose.
