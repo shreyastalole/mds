@@ -82,7 +82,7 @@ services:
     networks:
       - app-network
     ports:
-      - "3000:3000"
+      - 3000:3000
     # build:
     #   context: ../react-frontend/mds-fronten
     #   args:
@@ -90,7 +90,7 @@ services:
     #     NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://backendquarkus:8080}
     environment:
       # - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://backendquarkus:8080}
-      - NEXT_PUBLIC_API_URL=http://backendquarkus:8080
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
     depends_on:
       - backendquarkus
 
@@ -100,7 +100,7 @@ services:
     networks:
       - app-network
     ports:
-      - "8080:8080"
+      - 8080:8080
     # environment:
     #   - QUARKUS_DATASOURCE_URL=jdbc:postgresql://database:5432/product_db
     #   - QUARKUS_DATASOURCE_USERNAME=admin

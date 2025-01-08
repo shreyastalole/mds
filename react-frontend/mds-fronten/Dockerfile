@@ -18,13 +18,16 @@ COPY . .
 # ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
 
 # Build the application
-RUN npm run build
+# RUN npm run build
 
 # Expose the frontend port
 EXPOSE 3000
 
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+
 # Start the Next.js server
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:docker"]
 
 # # Use Node.js for building the image (first stage)
 # FROM node:20 as builder

@@ -1,6 +1,7 @@
 "use client";
 import { apiClient } from './ApiClient'
 
+
 // Fetch all products
 export const retrieveAllProducts = async () => await apiClient.get('/products') ;
 
