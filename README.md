@@ -2,9 +2,19 @@
 Set the **environment variable for backend url** to do this **export NEXT_PUBLIC_API_URL=your_url** in linux and in windows you can use **set** command.
 Navigate to **composed-app** folder and run the **docker compose** file using **docker-compose up --build** command
 
-<video src="Demo.mp4" controls width="600">
-Your browser does not support the video tag.
-</video>
+https://github.com/user-attachments/assets/e3fe71d6-e56d-4624-9389-4cee118db191
+
+
+![Alt text](https://github.com/shreyastalole/mds/blob/main/images/App1.png)
+
+
+
+![Alt text](https://github.com/shreyastalole/mds/blob/main/images/App2.png)
+
+
+
+![Alt text](https://github.com/shreyastalole/mds/blob/main/images/App3.png)
+
 
 
 # 12-Factor App Compliance for Quarkus and Next.js Project
